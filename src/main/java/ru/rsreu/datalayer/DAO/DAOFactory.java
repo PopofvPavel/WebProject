@@ -8,7 +8,7 @@ public abstract class DAOFactory {
 	}
 
 	public abstract UsersDAO getUserDAO();
-	public abstract UsersInfoDAO getUsersInfoDAO();
+	public abstract AdminActionDAO getUsersInfoDAO();
 
 
 }

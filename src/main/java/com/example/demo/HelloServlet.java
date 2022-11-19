@@ -3,7 +3,7 @@ package com.example.demo;
 import ru.rsreu.datalayer.DAO.DAOFactory;
 import ru.rsreu.datalayer.DAO.DBType;
 import ru.rsreu.datalayer.DAO.UsersDAO;
-import ru.rsreu.datalayer.DAO.UsersInfoDAO;
+import ru.rsreu.datalayer.DAO.AdminActionDAO;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.data.UserInfo;
 
@@ -18,7 +18,7 @@ import java.util.List;
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    private String gg,wp;
+    private String gg,wp,gt;
 
     public void init() {
         message = "Hello nigga max! Zdarova ept ti na belova sednya poidesh?; vo i kak raz ne hotel idti chet v padlu ;++ya TOJE RPTA" +
@@ -29,10 +29,13 @@ public class HelloServlet extends HttpServlet {
         UsersDAO usersDAO = factory.getUserDAO();
         List<User> usersTable = usersDAO.getRequest();
 
-        UsersInfoDAO usersInfoDAO = factory.getUsersInfoDAO();
-        List<UserInfo> usersInfoTable = usersInfoDAO.getRequest();
+        AdminActionDAO adminActionDAO = factory.getUsersInfoDAO();
+        List<UserInfo> usersInfoTable = adminActionDAO.getUsersInfoTable();
+
         wp = usersInfoTable.toString();
         gg = usersTable.toString();
+
+        adminActionDAO.registerNewUser(new User(7,3,"DISP2", "DISP2", 0,0));
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
