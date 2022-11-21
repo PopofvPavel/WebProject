@@ -1,5 +1,6 @@
 package ru.rsreu.datalayer.oracledb;
 
+import ru.rsreu.datalayer.DAO.CaptainActionDAO;
 import ru.rsreu.datalayer.DAO.DAOFactory;
 import ru.rsreu.datalayer.DAO.UsersDAO;
 import ru.rsreu.datalayer.DAO.AdminActionDAO;
@@ -46,7 +47,14 @@ public class OracleDBDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public AdminActionDAO getUsersInfoDAO() {
+	public AdminActionDAO getAdminActionDAO() {
 		return new OracleAdminActionDAO(connection);
+	}
+
+	@Override
+	public CaptainActionDAO getCaptainActionDAO() {
+		return new OracleCaptainActionDAO(connection);
+
+
 	}
 }

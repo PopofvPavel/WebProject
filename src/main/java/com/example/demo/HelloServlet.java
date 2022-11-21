@@ -1,7 +1,11 @@
 package com.example.demo;
 
+import ru.rsreu.datalayer.data.Request;
+import ru.rsreu.datalayer.data.RequestStatus;
+import ru.rsreu.datalayer.data.RequestType;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.handlers.AdminActionHandler;
+import ru.rsreu.datalayer.handlers.CaptainActionHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.GregorianCalendar;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
@@ -29,7 +32,7 @@ public class HelloServlet extends HttpServlet {
 
         wp = AdminActionHandler.getUsersTable();
         gg = AdminActionHandler.getUsersInfoTable();
-
+        //CaptainActionHandler.sendRequest(new Request(2, RequestType.ARRIVAL, RequestStatus.IN_CONSIDERATON,3));
         //adminActionDAO.registerNewUser(new User(7,3,"DISP2", "DISP2", 0,0));
     }
 
@@ -53,8 +56,19 @@ public class HelloServlet extends HttpServlet {
 //        processRequest(request, response);
 //        registerNewUserRequest(request, response);
 
+        sendNewRequest(request,response);
+        registerNewUser(request, response);
+    }
 
+    private void sendNewRequest(HttpServletRequest request,  HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("buttonNewRequest") != null) {
+            CaptainActionHandler.sendRequest(new Request(4, RequestType.ARRIVAL, RequestStatus.IN_CONSIDERATON,3));
+            System.out.println("registered new request");
+        }
+        request.getRequestDispatcher("/WEB-INF/some-result.jsp").forward(request, response);
+    }
 
+    private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("button1") != null) {
             AdminActionHandler.registerNewUser(new User(9,1,"ADMIN","ADMIN",0,0));
             System.out.println("easy gg wp");
@@ -80,27 +94,27 @@ public class HelloServlet extends HttpServlet {
 
     }
 
-    private void registerNewUserRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String radio = request.getParameter("usertype");
+//    private void registerNewUserRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        String radio = request.getParameter("usertype");
+//
+//        if ("Admin".equals(radio)) {
+//            AdminActionHandler.registerNewUser(new User(11,1,"ADMIN","ADMIN",0,0));
+//            System.out.println("success");
+//        } else if ("Moder".equals(radio)) {
+//            AdminActionHandler.registerNewUser(new User(11,2,"MODER","MODER",0,0));
+//            System.out.println("success");
+//        } else if ("User".equals(radio)) {
+//            AdminActionHandler.registerNewUser(new User(11,3,"CAPITAN","CAPITAN",0,0));
+//            System.out.println("success");
+//        } else {
+//            PrintWriter out = response.getWriter();
+//            out.println("<html><body>");
+//            out.println("<h1>" + "user ne vibran" + "</h1>");
+//            out.println("</body></html>");
+//        }
 
-        if ("Admin".equals(radio)) {
-            AdminActionHandler.registerNewUser(new User(11,1,"ADMIN","ADMIN",0,0));
-            System.out.println("success");
-        } else if ("Moder".equals(radio)) {
-            AdminActionHandler.registerNewUser(new User(11,2,"MODER","MODER",0,0));
-            System.out.println("success");
-        } else if ("User".equals(radio)) {
-            AdminActionHandler.registerNewUser(new User(11,3,"CAPITAN","CAPITAN",0,0));
-            System.out.println("success");
-        } else {
-            PrintWriter out = response.getWriter();
-            out.println("<html><body>");
-            out.println("<h1>" + "user ne vibran" + "</h1>");
-            out.println("</body></html>");
-        }
-
-        request.getRequestDispatcher("admin-page.jsp").forward(request, response);
-    }
+        //request.getRequestDispatcher("admin-page.jsp").forward(request, response);
+    //}
 
     public void destroy() {
     }

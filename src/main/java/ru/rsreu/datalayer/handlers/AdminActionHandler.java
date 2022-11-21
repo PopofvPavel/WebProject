@@ -20,7 +20,7 @@ public class AdminActionHandler {
 
     public static String getUsersInfoTable() {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
-        AdminActionDAO adminActionDAO = factory.getUsersInfoDAO();
+        AdminActionDAO adminActionDAO = factory.getAdminActionDAO();
         List<UserInfo> usersInfoTable = adminActionDAO.getUsersInfoTable();
 
         return usersInfoTable.toString();
@@ -28,7 +28,7 @@ public class AdminActionHandler {
 
     public static void registerNewUser(User user) {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
-        AdminActionDAO adminActionDAO = factory.getUsersInfoDAO();
+        AdminActionDAO adminActionDAO = factory.getAdminActionDAO();
         adminActionDAO.registerNewUser(user);
     }
 }
