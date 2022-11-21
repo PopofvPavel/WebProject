@@ -53,6 +53,7 @@ public class OracleAdminActionDAO implements AdminActionDAO {
             preparedStatement.setInt(6, user.isBlocked());
 
             preparedStatement.executeUpdate();
+            System.out.println("inserted");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,6 +62,6 @@ public class OracleAdminActionDAO implements AdminActionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("inserted");
+
     }
 }
