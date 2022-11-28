@@ -62,7 +62,7 @@ public class HelloServlet extends HttpServlet {
 
     private void sendNewRequest(HttpServletRequest request,  HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("buttonNewRequest") != null) {
-            CaptainActionHandler.sendRequest(new Request(4, RequestType.ARRIVAL, RequestStatus.IN_CONSIDERATON,3));
+            CaptainActionHandler.sendRequest(new Request(5, RequestType.ARRIVAL, RequestStatus.IN_CONSIDERATON,3));
             System.out.println("registered new request");
         }
         request.getRequestDispatcher("/WEB-INF/some-result.jsp").forward(request, response);
@@ -70,13 +70,13 @@ public class HelloServlet extends HttpServlet {
 
     private void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("button1") != null) {
-            AdminActionHandler.registerNewUser(new User(9,1,"ADMIN","ADMIN",0,0));
+            AdminActionHandler.registerNewUser(new User(11,1,"ADMIN","ADMIN",0,0));
             System.out.println("easy gg wp");
         } else if (request.getParameter("button2") != null) {
-            AdminActionHandler.registerNewUser(new User(9,2,"MODER","MODER",0,0));
+            AdminActionHandler.registerNewUser(new User(11,2,"MODER","MODER",0,0));
 
         } else if (request.getParameter("button3") != null) {
-            AdminActionHandler.registerNewUser(new User(9,3,"CAPITAN","CAPITAN",0,0));
+            AdminActionHandler.registerNewUser(new User(11,3,"CAPITAN","CAPITAN",0,0));
         } else {
             // ???
         }

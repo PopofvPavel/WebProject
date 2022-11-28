@@ -3,6 +3,7 @@ package ru.rsreu.datalayer.oracledb;
 import ru.rsreu.datalayer.DAO.AdminActionDAO;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.data.UserInfo;
+import ru.rsreu.datalayer.data.Worker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,5 +64,26 @@ public class OracleAdminActionDAO implements AdminActionDAO {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void registerNewWorker(Worker worker) {
+        String insertRequest = "INSERT INTO WORKERS VALUES (?,?,?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(insertRequest);
+            preparedStatement.setInt(1,worker.getIdWorker());
+            preparedStatement.setString(2, worker.getPost().name());
+            preparedStatement.setString(3,worker.getFIO());
+
+            preparedStatement.executeUpdate();
+            System.out.println("inserted new worker");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
