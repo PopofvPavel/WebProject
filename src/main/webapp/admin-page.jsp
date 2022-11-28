@@ -67,7 +67,7 @@
 
             </tr>
             <tr>
-                <td><input type="submit" value="Зарегестрировать"></td>
+                <td><input type="submit" value="Зарегестрировать" ></td>
                 <td><input type="reset" value="Отмена"></td>
 
 

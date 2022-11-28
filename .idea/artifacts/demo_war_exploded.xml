@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="demo" />
+          <element id="module-output" name="PortProject" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.apache.cxf:cxf-rt-frontend-jaxrs:3.4.5" />
@@ -58,6 +58,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="demo/web/Web" />
+      <element id="javaee-facet-resources" facet="PortProject/web/Web" />
     </root>
   </artifact>
 </component>

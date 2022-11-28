@@ -44,7 +44,7 @@
                 + "<br>" + "Тип: " + type + "<br>");
         //printWriter.println("Admin :" + isAdmin + " Moder = " + isModer + "User = " + isUser);
     } else {
-        printWriter.println("Данный логин занят");
+        printWriter.println("Данный логин занят, попробуйте другой");
     }
 
 
