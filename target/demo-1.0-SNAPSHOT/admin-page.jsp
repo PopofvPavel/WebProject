@@ -1,4 +1,7 @@
-<%--
+<%@ page import="ru.rsreu.datalayer.data.User" %>
+<%@ page import="ru.rsreu.datalayer.handlers.AdminActionHandler" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 20.11.2022
@@ -8,10 +11,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Регистрация нового пользователя</title>
+    <title>Админ</title>
 </head>
 <body>
-<form name="test" method="post">
+<%--<form name="test" method="post">
     <p><b>Введите логин:</b><br>
         <label>
             <input type="text" size="40">
@@ -22,7 +25,7 @@
             <input type="text" size="40">
         </label>
     </p>
-</form>
+</form>--%>
 <%--    <p><b>Выберите тип пользователя:</b><Br>--%>
 <%--        <label>--%>
 <%--            <input type="radio" name="usertype" value="admin" >--%>
@@ -35,7 +38,7 @@
 <%--        </label> User<Br>--%>
 <%--    </p>--%>
 <%--    <p><input type="submit" value="Зарегистрировать" > </p>--%>
-<form action="${pageContext.request.contextPath}/hello-servlet" method="post">
+<%--<form action="${pageContext.request.contextPath}/hello-servlet" method="post">
     <input type="submit" name="button1" value="Button 1"/>
     <input type="submit" name="button2" value="Button 2"/>
     <input type="submit" name="button3" value="Button 3"/>
@@ -44,7 +47,7 @@
     <input type="submit" name="buttonNewRequest" value="newRequest"/>
 
 
-</form>
+</form>--%>
 
 <div>
     <h1>Регистрация нового пользователя</h1>
@@ -67,12 +70,18 @@
 
             </tr>
             <tr>
-                <td><input type="submit" value="Зарегестрировать" ></td>
+                <td><input type="submit" value="Зарегестрировать"></td>
                 <td><input type="reset" value="Отмена"></td>
 
 
             </tr>
         </table>
+    </form>
+</div>
+
+<div>
+    <form action="user-table.jsp">
+        <input type="submit" value="Таблица пользователей"></td>
     </form>
 </div>
 </body>

@@ -17,7 +17,13 @@ public class AdminActionHandler {
 
         return usersTable.toString();
     }
+    public static List<User> getUsersTableList() {
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        UsersDAO usersDAO = factory.getUserDAO();
+        List<User> usersTable = usersDAO.getRequest();
 
+        return usersTable;
+    }
     public static String getUsersInfoTable() {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         AdminActionDAO adminActionDAO = factory.getAdminActionDAO();

@@ -65,15 +65,11 @@ public class User {
         isBlocked = blocked;
     }
 
+    public static String getUserTableHeader() {
+        return String.format("%-12s%-17s%-17s%-17s%-17s%-17s\n", "ID_USER", "ID_USER_TYPE", "LOGIN","PASSWORD","IS_AUTHORIZED","IS_BLOCKED");
+    }
     @Override
     public String toString() {
-        return "User{" +
-                "idUser=" + idUser +
-                ", idUserType=" + idUserType +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", isAuthorized=" + isAuthorized +
-                ", isBlocked=" + isBlocked +
-                '}';
+        return String.format("%-12d%-17d%-17s%-17s%-17d%-17d\n", idUser,idUserType, login, password, isAuthorized, isBlocked);
     }
 }

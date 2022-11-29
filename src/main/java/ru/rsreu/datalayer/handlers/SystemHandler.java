@@ -21,7 +21,7 @@ public class SystemHandler {
         return true;
     }
     public static boolean isValidPassword(String password) {
-        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+/*        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         UsersDAO usersDAO = factory.getUserDAO();
         List<User> usersTable = usersDAO.getRequest();
         for (User user : usersTable) {
@@ -30,7 +30,8 @@ public class SystemHandler {
             }
         }
 
-        return true;
+        return true;*/
+        return !(password.isEmpty());
     }
 
     public static int getNewUserId() {
