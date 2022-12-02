@@ -12,66 +12,34 @@
 <html>
 <head>
     <title>Админ</title>
+    <style><jsp:include page="css/style.css"/></style>
 </head>
 <body>
-<%--<form name="test" method="post">
-    <p><b>Введите логин:</b><br>
-        <label>
-            <input type="text" size="40">
-        </label>
-    </p>
-    <p><b>Введите пароль:</b><br>
-        <label>
-            <input type="text" size="40">
-        </label>
-    </p>
-</form>--%>
-<%--    <p><b>Выберите тип пользователя:</b><Br>--%>
-<%--        <label>--%>
-<%--            <input type="radio" name="usertype" value="admin" >--%>
-<%--        </label> Admin<Br>--%>
-<%--        <label>--%>
-<%--            <input type="radio" name="usertype" value="moder">--%>
-<%--        </label> Moder<Br>--%>
-<%--        <label>--%>
-<%--            <input type="radio" name="usertype" value="user">--%>
-<%--        </label> User<Br>--%>
-<%--    </p>--%>
-<%--    <p><input type="submit" value="Зарегистрировать" > </p>--%>
-<%--<form action="${pageContext.request.contextPath}/hello-servlet" method="post">
-    <input type="submit" name="button1" value="Button 1"/>
-    <input type="submit" name="button2" value="Button 2"/>
-    <input type="submit" name="button3" value="Button 3"/>
-</form>
-<form action="${pageContext.request.contextPath}/hello-servlet" method="post">
-    <input type="submit" name="buttonNewRequest" value="newRequest"/>
-
-
-</form>--%>
-
-<div>
+<div class="registration-block">
     <h1>Регистрация нового пользователя</h1>
     <form action="registration.jsp" method="post">
         <table>
             <tr>
                 <td>Логин</td>
-                <td><input type="text" name="userLogin">
-                <td>
+                <td><input type="text" class="text-box"  name="userLogin"></td>
             </tr>
             <tr>
                 <td>Пароль</td>
-                <td><input type="text" name="userPassword"></td>
+                <td><input type="text"  class="text-box"  name="userPassword"></td>
             </tr>
             <tr>
-                <p><b>Выберите тип пользователя</b></p>
-                <p><input name="usertype" type="radio" value="admin"> Админ</p>
-                <p><input name="usertype" type="radio" value="moderator"> Модератор </p>
-                <p><input name="usertype" type="radio" value="user" checked> Пользователь </p>
+                <div class="choose-radio-container">
+                    <p><b>Выберите тип пользователя</b></p>
+                    <p><input name="usertype" type="radio" class="radio-button" value="admin"> Админ</p>
+                    <p><input name="usertype" type="radio" class="radio-button" value="moderator"> Модератор </p>
+                    <p><input name="usertype" type="radio" class="radio-button" value="user" checked> Пользователь </p>
+                </div>
+
 
             </tr>
             <tr>
-                <td><input type="submit" value="Зарегестрировать"></td>
-                <td><input type="reset" value="Отмена"></td>
+                <td><input type="submit" class="button" value="Зарегестрировать"></td>
+                <td><input type="reset" class="button" value="Отмена"></td>
 
 
             </tr>
@@ -79,9 +47,10 @@
     </form>
 </div>
 
-<div>
+<div class="info-selection-container">
+    <h1>Просмотр информации</h1>
     <form action="user-table.jsp">
-        <input type="submit" value="Таблица пользователей"></td>
+        <input type="submit" class="button" value="Таблица пользователей"></td>
     </form>
 </div>
 </body>

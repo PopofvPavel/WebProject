@@ -12,39 +12,43 @@
 <html>
 <head>
     <title>User table</title>
+    <style><jsp:include page="css/style.css"/></style>
 </head>
 <body>
-<h1>Таблица пользователей</h1>
-<table border="1">
-    <tr>
-        <th>ID_USER</th>
-        <th>ID_USER_TYPE</th>
-        <th>LOGIN</th>
-        <th>PASSWORD</th>
-        <th>IS_AUTHORIZED</th>
-        <th>IS_BLOCKED</th>
-    </tr>
-    <%
-        PrintWriter printWriter = response.getWriter();
-        List<User> rows = AdminActionHandler.getUsersTableList();
-        for (User row : rows) {%>
-    <tr>
-        <td><%=row.getIdUser()%>
-        </td>
-        <td><%=row.getIdUserType()%>
-        </td>
-        <td><%=row.getLogin()%>
-        </td>
-        <td><%=row.getPassword()%>
-        </td>
-        <td><%=row.isAuthorized()%>
-        </td>
-        <td><%=row.isBlocked()%>
-        </td>
-        <%} %>
+<div class="table-container">
+    <h1>Таблица пользователей</h1>
+    <table class="data-table">
+        <tr class="data-table-row">
+            <th class="data-table-col">ID_USER</th>
+            <th>ID_USER_TYPE</th>
+            <th class="data-table-col">LOGIN</th>
+            <th class="data-table-col">PASSWORD</th>
+            <th class="data-table-col">IS_AUTHORIZED</th>
+            <th class="data-table-col"IS_BLOCKED</th>
+        </tr>
+        <%
+            PrintWriter printWriter = response.getWriter();
+            List<User> rows = AdminActionHandler.getUsersTableList();
+            for (User row : rows) {%>
+        <tr class="data-table-row">
+            <td class="data-table-col"><%=row.getIdUser()%>
+            </td>
+            <td class="data-table-col"><%=row.getIdUserType()%>
+            </td>
+            <td class="data-table-col"><%=row.getLogin()%>
+            </td>
+            <td class="data-table-col"><%=row.getPassword()%>
+            </td>
+            <td class="data-table-col"><%=row.isAuthorized()%>
+            </td>
+            <td class="data-table-col"><%=row.isBlocked()%>
+            </td>
+            <%} %>
 
-    </tr>
+        </tr>
 
-</table>
+    </table>
+</div>
+
 </body>
 </html>
