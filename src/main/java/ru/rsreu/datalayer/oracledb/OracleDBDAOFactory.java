@@ -1,9 +1,6 @@
 package ru.rsreu.datalayer.oracledb;
 
-import ru.rsreu.datalayer.DAO.CaptainActionDAO;
-import ru.rsreu.datalayer.DAO.DAOFactory;
-import ru.rsreu.datalayer.DAO.UsersDAO;
-import ru.rsreu.datalayer.DAO.AdminActionDAO;
+import ru.rsreu.datalayer.DAO.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,6 +41,11 @@ public class OracleDBDAOFactory extends DAOFactory {
 	@Override
 	public UsersDAO getUserDAO() {
 		return new OracleUsersDao(connection);
+	}
+
+	@Override
+	public WorkersDAO getWorkersDAO() {
+		return new OracleWorkersDAO(connection);
 	}
 
 	@Override

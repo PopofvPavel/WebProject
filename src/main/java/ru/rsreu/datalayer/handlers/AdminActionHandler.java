@@ -1,11 +1,9 @@
 package ru.rsreu.datalayer.handlers;
 
-import ru.rsreu.datalayer.DAO.AdminActionDAO;
-import ru.rsreu.datalayer.DAO.DAOFactory;
-import ru.rsreu.datalayer.DAO.DBType;
-import ru.rsreu.datalayer.DAO.UsersDAO;
+import ru.rsreu.datalayer.DAO.*;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.data.UserInfo;
+import ru.rsreu.datalayer.data.Worker;
 
 import java.util.List;
 
@@ -17,6 +15,7 @@ public class AdminActionHandler {
 
         return usersTable.toString();
     }
+
     public static List<User> getUsersTableList() {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         UsersDAO usersDAO = factory.getUserDAO();
@@ -24,6 +23,15 @@ public class AdminActionHandler {
 
         return usersTable;
     }
+
+    public static List<Worker> getWorkerTableList() {
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        WorkersDAO workersDAO = factory.getWorkersDAO();
+        List<Worker> workersTable = workersDAO.getRequest();
+
+        return workersTable;
+    }
+
     public static String getUsersInfoTable() {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         AdminActionDAO adminActionDAO = factory.getAdminActionDAO();
@@ -36,5 +44,11 @@ public class AdminActionHandler {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         AdminActionDAO adminActionDAO = factory.getAdminActionDAO();
         adminActionDAO.registerNewUser(user);
+    }
+
+    public static void registerNewWorker(Worker worker) {
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        AdminActionDAO adminActionDAO = factory.getAdminActionDAO();
+        adminActionDAO.registerNewWorker(worker);
     }
 }

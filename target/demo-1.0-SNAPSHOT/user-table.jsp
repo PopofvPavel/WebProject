@@ -12,7 +12,9 @@
 <html>
 <head>
     <title>User table</title>
-    <style><jsp:include page="css/style.css"/></style>
+    <style>
+        <jsp:include page="css/style.css"/>
+    </style>
 </head>
 <body>
 <div class="table-container">
@@ -24,7 +26,7 @@
             <th class="data-table-col">LOGIN</th>
             <th class="data-table-col">PASSWORD</th>
             <th class="data-table-col">IS_AUTHORIZED</th>
-            <th class="data-table-col"IS_BLOCKED</th>
+            <th class="data-table-col">IS_BLOCKED</th>
         </tr>
         <%
             PrintWriter printWriter = response.getWriter();
@@ -46,8 +48,13 @@
             <%} %>
 
         </tr>
-
     </table>
+
+    <form action="admin-page.jsp" method="get">
+        <input type="submit" class="button" value="Назад">
+    </form>
+
+
 </div>
 
 </body>

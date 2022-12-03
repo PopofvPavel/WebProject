@@ -5,7 +5,7 @@ import ru.rsreu.datalayer.DAO.DBType;
 import ru.rsreu.datalayer.DAO.UsersDAO;
 import ru.rsreu.datalayer.data.User;
 
-import java.util.List;
+import java.util.*;
 
 public class SystemHandler {
     public static boolean isValidLogin(String login) {
@@ -44,5 +44,18 @@ public class SystemHandler {
         return newUserId;
 
 
+    }
+
+    public static boolean isValidUserId(int userId) {
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        UsersDAO usersDAO = factory.getUserDAO();
+        List<User> usersTable = usersDAO.getRequest();
+        Map<Integer, Integer> usersMap = new HashMap<>();
+        for (User user : usersTable) {
+            usersMap.put(user.getIdUser(),user.getIdUserType());
+        }
+        boolean isValidIdUser = usersMap.containsKey(userId) && usersMap.get(userId).equals(3);
+        System.out.println("all ids" + usersMap);
+        return isValidIdUser;
     }
 }
