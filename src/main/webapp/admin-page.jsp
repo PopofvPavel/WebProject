@@ -85,14 +85,30 @@
     </div>
 
 
-    <div class="info-selection-container">
-        <h1>Просмотр информации</h1>
-        <form action="user-table.jsp">
-            <input type="submit" class="button" value="Таблица пользователей"></td>
-        </form>
-        <form action="workers-table.jsp">
-            <input type="submit" class="button" value="Таблица работников"></td>
-        </form>
+    <div class="info-selection-and-update-container">
+        <div class="select-info-block">
+            <h1>Просмотр информации </h1>
+            <form action="user-table.jsp">
+                <input type="submit" class="button" value="Таблица пользователей"></td>
+            </form>
+            <form action="workers-table.jsp">
+                <input type="submit" class="button" value="Таблица работников"></td>
+            </form>
+            <form action="piers-table.jsp">
+                <input type="submit" class="button" value="Таблица пирсов"></td>
+            </form>
+        </div>
+
+        <div class="delete-info-block">
+            <h1> Удаление информации</h1>
+            <form action="DeleteUser" method="post">
+                <input type="submit" class="button" value="Удалить пользователей"></td>
+            </form>
+            <form action="DeleteWorker" method="post">
+                <input type="submit" class="button" value="Удалить работников"></td>
+            </form>
+        </div>
+
     </div>
 </div>
 </body>

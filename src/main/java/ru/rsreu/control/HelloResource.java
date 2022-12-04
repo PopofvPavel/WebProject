@@ -1,4 +1,4 @@
-package com.example.demo;
+package ru.rsreu.control;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

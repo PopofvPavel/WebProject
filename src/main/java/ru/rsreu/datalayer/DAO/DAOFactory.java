@@ -10,6 +10,7 @@ public abstract class DAOFactory {
 	public abstract UsersDAO getUserDAO();
 
 	public abstract WorkersDAO getWorkersDAO();
+	public abstract PiersDAO getPiersDAO();
 	public abstract AdminActionDAO getAdminActionDAO();
 
 	public abstract CaptainActionDAO getCaptainActionDAO();

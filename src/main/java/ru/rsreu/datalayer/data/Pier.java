@@ -3,12 +3,12 @@ package ru.rsreu.datalayer.data;
 public class Pier {
     private int idPier;
     private PierStatus status;
-    private int isShip;
+    private Integer idShip;//or int
 
-    public Pier(int idPier, PierStatus status, int isShip) {
+    public Pier(int idPier, PierStatus status, Integer idShip) {
         this.idPier = idPier;
         this.status = status;
-        this.isShip = isShip;
+        this.idShip = idShip;
     }
 
     public int getIdPier() {
@@ -27,12 +27,12 @@ public class Pier {
         this.status = status;
     }
 
-    public int getIsShip() {
-        return isShip;
+    public Integer getIdShip() {
+        return idShip;
     }
 
-    public void setIsShip(int isShip) {
-        this.isShip = isShip;
+    public void setIdShip(Integer idShip) {
+        this.idShip = idShip;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Pier {
         return "Pier{" +
                 "idPier=" + idPier +
                 ", status=" + status +
-                ", isShip=" + isShip +
+                ", isShip=" + idShip +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package ru.rsreu.datalayer.handlers;
 
 import ru.rsreu.datalayer.DAO.*;
+import ru.rsreu.datalayer.data.Pier;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.data.UserInfo;
 import ru.rsreu.datalayer.data.Worker;
@@ -27,9 +28,14 @@ public class AdminActionHandler {
     public static List<Worker> getWorkerTableList() {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         WorkersDAO workersDAO = factory.getWorkersDAO();
-        List<Worker> workersTable = workersDAO.getRequest();
 
-        return workersTable;
+        return workersDAO.getAllWorkersList();
+    }
+    public static List<Pier> getPierTableList() {
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        PiersDAO piersDAO = factory.getPiersDAO();
+
+        return piersDAO.getRequest();
     }
 
     public static String getUsersInfoTable() {

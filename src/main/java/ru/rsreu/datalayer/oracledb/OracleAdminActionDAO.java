@@ -1,11 +1,14 @@
 package ru.rsreu.datalayer.oracledb;
 
-import ru.rsreu.datalayer.DAO.AdminActionDAO;
+import ru.rsreu.datalayer.DAO.*;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.data.UserInfo;
 import ru.rsreu.datalayer.data.Worker;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,47 +46,16 @@ public class OracleAdminActionDAO implements AdminActionDAO {
 
     @Override
     public void registerNewUser(User user) {
-        String insertRequest = "INSERT INTO USERS VALUES (?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(insertRequest);
-            preparedStatement.setInt(1,user.getIdUser());
-            preparedStatement.setInt(2, user.getIdUserType());
-            preparedStatement.setString(3,user.getLogin());
-            preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setInt(5, user.isAuthorized());
-            preparedStatement.setInt(6, user.isBlocked());
-
-            preparedStatement.executeUpdate();
-            System.out.println("inserted");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        UsersDAO usersDAO = factory.getUserDAO();
+        usersDAO.insertUser(user);
 
     }
 
     @Override
     public void registerNewWorker(Worker worker) {
-        String insertRequest = "INSERT INTO WORKERS VALUES (?,?,?)";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(insertRequest);
-            preparedStatement.setInt(1,worker.getIdWorker());
-            preparedStatement.setString(2, worker.getPost().name());
-            preparedStatement.setString(3,worker.getFIO());
-
-            preparedStatement.executeUpdate();
-            System.out.println("inserted new worker");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        WorkersDAO workersDAO = factory.getWorkersDAO();
+        workersDAO.insertWorker(worker);
     }
 }

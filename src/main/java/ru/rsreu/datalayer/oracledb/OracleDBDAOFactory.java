@@ -49,6 +49,11 @@ public class OracleDBDAOFactory extends DAOFactory {
 	}
 
 	@Override
+	public PiersDAO getPiersDAO() {
+		return new OraclePiersDAO(connection);
+	}
+
+	@Override
 	public AdminActionDAO getAdminActionDAO() {
 		return new OracleAdminActionDAO(connection);
 	}
