@@ -20,7 +20,7 @@ public abstract class Command {
 
     }
 
-    public void send() {
+    public void send() throws IOException {
 
     }
 
@@ -28,13 +28,13 @@ public abstract class Command {
 
     }
 
-    private void forward(String target) throws ServletException, IOException {
+    protected void forward(String target) throws ServletException, IOException {
         RequestDispatcher dispatcher = context.getRequestDispatcher(target);
         dispatcher.forward(request,response);
 
     }
 
-    private void redirect(String url) throws IOException {
+    protected void redirect(String url) throws IOException {
         response.sendRedirect(url);
 
     }

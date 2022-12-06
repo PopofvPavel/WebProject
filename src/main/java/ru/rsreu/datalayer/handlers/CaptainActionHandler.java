@@ -6,9 +6,11 @@ import ru.rsreu.datalayer.DAO.DBType;
 import ru.rsreu.datalayer.data.Request;
 
 public class CaptainActionHandler {
-    public static void sendRequest(Request request) {
+    public static boolean sendRequest(Request request) {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         CaptainActionDAO captainActionDAO = factory.getCaptainActionDAO();
-        captainActionDAO.sendRequest(request);
+        boolean isSendRequest = captainActionDAO.sendRequest(request);
+        return isSendRequest;
+
     }
 }

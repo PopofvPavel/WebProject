@@ -15,5 +15,7 @@ public abstract class DAOFactory {
 
 	public abstract CaptainActionDAO getCaptainActionDAO();
 
+	public abstract RequestsDAO getRequestsDAO();
+
 
 }

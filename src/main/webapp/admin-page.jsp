@@ -101,11 +101,14 @@
 
         <div class="delete-info-block">
             <h1> Удаление информации</h1>
-            <form action="DeleteUser" method="post">
-                <input type="submit" class="button" value="Удалить пользователей"></td>
+            <form action="HelloServlet" method="post" command="DeleteUser">
+                <input type="submit" class="button" name="command" value="DeleteUser"> id пользователя</td>
+                <input type="text" class="text-box" name="id">
             </form>
-            <form action="DeleteWorker" method="post">
-                <input type="submit" class="button" value="Удалить работников"></td>
+            <form action="HelloServlet" method="post">
+              <%--  <input type="submit" class="button" value="Удалить работников"></td>--%>
+                  <input type="submit" class="button" name="command" value="DeleteWorker">id пользователя</td>
+                  <input type="text" class="text-box" name="id">
             </form>
         </div>
 

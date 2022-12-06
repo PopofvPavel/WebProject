@@ -7,6 +7,7 @@ import ru.rsreu.datalayer.data.Ship;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OracleCaptainActionDAO implements CaptainActionDAO {
@@ -15,27 +16,26 @@ public class OracleCaptainActionDAO implements CaptainActionDAO {
     public OracleCaptainActionDAO(Connection connection) {
         this.connection = connection;
     }
+
     @Override
-    public void sendRequest(Request request) {
+    public boolean sendRequest(Request request) {
         String insertRequest = "INSERT INTO REQUESTS VALUES (?,?,?,?)";
         try {
             System.out.println(request.getRequestType().name() + '\n' + request.getRequestStatus().name());
             PreparedStatement preparedStatement = connection.prepareStatement(insertRequest);
-            preparedStatement.setInt(1,request.getIdRequest());
+            preparedStatement.setInt(1, request.getIdRequest());
             preparedStatement.setString(2, request.getRequestType().name());
-            preparedStatement.setString(3,request.getRequestStatus().name());
+            preparedStatement.setString(3, request.getRequestStatus().name());
             preparedStatement.setInt(4, request.getIdCaptain());
 
             preparedStatement.executeUpdate();
-            System.out.println("inserted captain request");
+            System.out.println("inserted new request");
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        try {
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override//not checked
@@ -60,11 +60,31 @@ public class OracleCaptainActionDAO implements CaptainActionDAO {
 
     }
 
+    @Override
+    public Ship getShipByCaptainId(int idCaptain) {//not checked
+        String request = "SELECT * FROM SHIPS WHERE ID_CAPTAIN = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(request);
+            preparedStatement.setInt(1, idCaptain);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idShip = rs.getInt(1);
+                int idCap = rs.getInt(2);
+                String name = rs.getString(3);
+                return new Ship(idShip, idCaptain, name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private void setStatusEmptyToPier(int idShip) {
         String request = "UPDATE PIERS SET STATUS = 'EMPTY', ID_SHIP = NULL WHERE ID_SHIP = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
-            preparedStatement.setInt(1,idShip);
+            preparedStatement.setInt(1, idShip);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -76,7 +96,7 @@ public class OracleCaptainActionDAO implements CaptainActionDAO {
         String request = "UPDATE PIERS SET STATUS = 'OCCUPIED', ID_SHIP = ? WHERE ID_PIER = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
-            preparedStatement.setInt(1,idShip);
+            preparedStatement.setInt(1, idShip);
             preparedStatement.setInt(2, idPier);
             preparedStatement.executeUpdate();
             connection.commit();
@@ -87,7 +107,7 @@ public class OracleCaptainActionDAO implements CaptainActionDAO {
 
 
     private void setCanceledStatusInRequestsTable(Connection connection, int request) {
-        String updateRequest = "UPDATE REQUESTS SET STATUS = 'CANCELED' WHERE ID_REQUEST = ?" ;
+        String updateRequest = "UPDATE REQUESTS SET STATUS = 'CANCELED' WHERE ID_REQUEST = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(updateRequest);

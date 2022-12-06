@@ -75,6 +75,33 @@ body {
 
 
 }
+.block-dark {
+    padding: 25px 20px;
+    width: auto;
+    height: auto;
+    margin: 20px;
+    background-color: #9C9C9C;
+    border-radius: 15px;
+    border: dimgray;
+    text-align: left;
+    color: black;
+    font-family: Verdana;
+}
+
+.block-bright {
+     padding: 25px 20px;
+     width: auto;
+     height: auto;
+     margin: 0 20px 0 20px;
+     background-color: #9C9C9C;
+     border-radius: 15px;
+     border: dimgray;
+     text-align: left;
+     color: black;
+     font-family: Verdana;
+     display: flex;
+     gap: 15px;
+ }
 
 .text-box {
     border-radius: 6px;

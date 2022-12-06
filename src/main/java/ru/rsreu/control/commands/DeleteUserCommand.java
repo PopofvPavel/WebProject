@@ -23,9 +23,11 @@ public class DeleteUserCommand extends Command {
     public void send() {
         String id = request.getParameter("id");
         User user = usersDAO.getUserById(id);
+        System.out.println("User found:" + user.toString());
         if (user == null) {
             return;
         }
         usersDAO.deleteUser(user);
+        System.out.println("Deleted user(command)");
     }
 }

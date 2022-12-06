@@ -6,7 +6,8 @@ import ru.rsreu.datalayer.data.Ship;
 
 
 public interface CaptainActionDAO {
-    void sendRequest(Request request);
+    boolean
+    sendRequest(Request request);
 
     void cancelRequest(Request request);
 
@@ -15,6 +16,9 @@ public interface CaptainActionDAO {
     void moveShipToPier(Ship ship, Pier pier);
 
     void moveShipFromPier(Ship ship);
+
+    Ship getShipByCaptainId(int idCaptain);
+
 
     //Pier askForEmptyPier();
 //    boolean askForPilot();

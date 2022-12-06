@@ -14,6 +14,9 @@
             <form action="admin-page.jsp">
                 <input type="submit" class="button" value="Меню администратора"></td>
             </form>
+            <form action="captain-page.jsp">
+                <input type="submit" class="button" value="Меню капитана"></td>
+            </form>
 
         </div>
     </div>

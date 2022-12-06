@@ -13,6 +13,8 @@ public interface WorkersDAO {
 
      Worker getWorkerById(int id);
 
+     Worker getWorkerById(String id);
+
      void deleteWorker(Worker worker);
 
      void updateWorker(Worker worker);

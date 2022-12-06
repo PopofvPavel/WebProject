@@ -35,7 +35,7 @@ public class AdminActionHandler {
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         PiersDAO piersDAO = factory.getPiersDAO();
 
-        return piersDAO.getRequest();
+        return piersDAO.getAllPiersList();
     }
 
     public static String getUsersInfoTable() {

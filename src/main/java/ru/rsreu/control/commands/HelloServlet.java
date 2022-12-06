@@ -18,10 +18,11 @@ public class HelloServlet extends HttpServlet {
     public void init() {
 
     }
-
+//http://localhost:8080/demo_war_exploded/HelloServlet?command=DeleteUser&id=22&method=post
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Command command = this.getCommand(request);
+        System.out.println("In doGet meth");
         command.init(this.getServletContext(), request, response);
         command.execute();
     }
@@ -43,11 +44,13 @@ public class HelloServlet extends HttpServlet {
     }
 
     private Command getCommand(HttpServletRequest request)  {
-        String path = String.format("ru.rsreu.control.commands.%sCommand", request.getPathInfo().substring(1));
+        //String path = String.format("ru.rsreu.control.commands.%sCommand", request.getPathInfo().substring(1));
+        String path = String.format("ru.rsreu.control.commands.%sCommand", request.getParameter("command"));
         System.out.println("Path = " + path);
         Class<?> type = null;
         try {
             type = Class.forName(path);
+            System.out.println("type = " + type);
         } catch (ClassNotFoundException e) {
             System.err.println("Error in Class.forName");
         }

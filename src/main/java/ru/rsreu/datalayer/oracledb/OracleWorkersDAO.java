@@ -77,6 +77,11 @@ public class OracleWorkersDAO implements WorkersDAO {
     }
 
     @Override
+    public Worker getWorkerById(String id) {
+        return this.getWorkerById(Integer.parseInt(id));
+    }
+
+    @Override
     public void deleteWorker(Worker worker) {
         String request = "DELETE FROM WORKERS WHERE ID_WORKER = ?";
         try {
