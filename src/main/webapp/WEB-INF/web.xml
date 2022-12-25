@@ -8,4 +8,9 @@
     <url-pattern>/HelloServlet</url-pattern>
 </servlet-mapping>
 
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 </web-app>
+<!--
+        http://localhost:8080/demo_war_exploded/-->

@@ -44,6 +44,7 @@
                 <tr>
                     <td><input type="submit" class="button" value="Зарегестрировать"></td>
                     <td><input type="reset" class="button" value="Отмена"></td>
+                    <td>Your id is ${idUser}</td>
                 </tr>
             </table>
         </form>

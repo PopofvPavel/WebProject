@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HelloServlet extends HttpServlet {
 
     public void init() {
-
+       // getServletContext().setSessionTimeout(15);
     }
 //http://localhost:8080/demo_war_exploded/HelloServlet?command=DeleteUser&id=22&method=post
     @Override

@@ -21,7 +21,7 @@
     <h1>Таблица пользователей</h1>
     <table class="data-table">
         <tr class="data-table-row">
-            <th class="data-table-col">ID_USER</th>
+                <th class="data-table-col">ID_USER</th>
             <th>ID_USER_TYPE</th>
             <th class="data-table-col">LOGIN</th>
             <th class="data-table-col">PASSWORD</th>

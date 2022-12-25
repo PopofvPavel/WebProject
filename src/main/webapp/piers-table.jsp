@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="table-container">
-    <h1>Таблица работников</h1>
+    <h1>Таблица пирсов</h1>
     <table class="data-table">
         <tr class="data-table-row">
             <th class="data-table-col">ID_PIER</th>

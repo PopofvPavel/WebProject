@@ -22,9 +22,11 @@ public class OracleUsersDao implements UsersDAO {
         try {
             Statement st = this.connection.createStatement();
             ResultSet rs = st.executeQuery(request);
-            System.out.println("gg");
+            System.out.println("User table executed");
             while (rs.next()) {
+                System.out.print("Row1: ");
                 list.add(getUserFromResultSet(rs));
+                System.out.println(getUserFromResultSet(rs));
 
             }
 

@@ -25,7 +25,8 @@ public class SendRequestCommand extends Command {
         int idRequest = SystemHandler.getNewRequestId();
         RequestType requestType = isArrivalRequest ? RequestType.ARRIVAL : RequestType.DEPARTURE;
         RequestStatus requestStatus = RequestStatus.IN_CONSIDERATON;
-        int idCaptain = 6;    //fix later
+        //int idCaptain = 6;    //fix later
+        int idCaptain = (int)request.getSession().getAttribute("idUser");
         Request requestCap = new Request(idRequest, requestType, requestStatus, idCaptain);
         boolean isSendRequest = CaptainActionHandler.sendRequest(requestCap);
         try {

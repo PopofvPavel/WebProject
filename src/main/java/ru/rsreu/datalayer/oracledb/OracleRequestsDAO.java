@@ -5,15 +5,12 @@ import ru.rsreu.datalayer.data.Request;
 import ru.rsreu.datalayer.data.RequestStatus;
 import ru.rsreu.datalayer.data.RequestType;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OracleRequestsDAO implements RequestsDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public OracleRequestsDAO(Connection connection) {
         this.connection = connection;
@@ -21,7 +18,7 @@ public class OracleRequestsDAO implements RequestsDAO {
 
     @Override
     public List<Request> getAllRequests() {
-        List<Request> list = new ArrayList<Request>();
+        List<Request> list = new ArrayList<>();
         String request = "SELECT * FROM REQUESTS";
 
         try {
@@ -43,6 +40,27 @@ public class OracleRequestsDAO implements RequestsDAO {
 
 
         return list;
+    }
+
+    @Override
+    public void setRequestStatus(Request request, RequestStatus status) {
+        setRequestStatus(request.getIdRequest(),status);
+    }
+
+    @Override
+    public void setRequestStatus(int idRequest, RequestStatus status) {
+        String request = "UPDATE REQUESTS SET STATUS = ? WHERE ID_REQUEST = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(request);
+            preparedStatement.setString(1, status.name());
+            preparedStatement.setInt(2, idRequest);
+
+            preparedStatement.executeUpdate();
+            System.out.println("UPDATED STATUS: " + status.name());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
