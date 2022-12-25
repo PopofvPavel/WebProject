@@ -49,47 +49,11 @@
 <div id="header">
 
     <div>
-        <h1><a href="index.jsp">Главная страница main gg</a></h1>
-    </div>
-    <%--<div class="login-id">
-        <%
-            boolean isLoggedIn = false;
-            if (request.getSession().getAttribute("idUser") == null) {
-                request.setAttribute("LoginButtonValue", request.getAttribute("idUser"));
-
-
-
-            } else {
-                request.setAttribute("LoginButtonValue", "Logout");
-                isLoggedIn = true;
-
-            }
-            /*String logAction = isLoggedIn ? "login.jsp" : ""*/
-            request.setAttribute("isAuthorized", Boolean.toString(isLoggedIn));
-            if (isLoggedIn && request.getParameter("LoginButtonValue").equals("Logout")) {
-                request.setAttribute("action", "HelloServlet");
-                //request.getSession().invalidate();
-            } else{
-                request.setAttribute("action", "login.jsp");
-            }
-        %>
-        &lt;%&ndash; <form action="login.jsp" method="post">&ndash;%&gt;
-        <form action="${action}" method="post">
-            <input type="submit" class="button" name="command" value="${LoginButtonValue}"></td>
-        </form>
-
-        <form action="HelloServlet" method="post">
-            <input type="submit" class="button" name="command" value="DeleteUser"> id пользователя</td>
-            <input type="text" class="text-box" name="id">
-        </form>
-
-        &lt;%&ndash; <% }%>&ndash;%&gt;
+        <h1><a href="index.jsp">Главная страница</a></h1>
     </div>
     <div>id =  ${idUser}</div>
-    <div> button value = ${LoginButtonValue}</div>--%>
-
 </div>
-<div>id =  ${idUser}</div>
+
 <div class="block-dark">
     <h1>Новый запрос</h1>
     <form action="HelloServlet" method="post">

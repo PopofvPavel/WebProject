@@ -17,6 +17,18 @@ public class OracleRequestsDAO implements RequestsDAO {
     }
 
     @Override
+    public Request getLastRequestById(int idCaptain) {
+        List<Request> list = this.getAllRequests();
+        Request returnRequest = null;
+        for (Request request : list) {
+            if (request.getIdCaptain() == idCaptain) {
+                returnRequest = request;
+            }
+        }
+        return returnRequest;
+    }
+
+    @Override
     public List<Request> getAllRequests() {
         List<Request> list = new ArrayList<>();
         String request = "SELECT * FROM REQUESTS";

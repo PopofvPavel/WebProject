@@ -17,6 +17,14 @@
     </style>
 </head>
 <body>
+<div id="header">
+
+    <div>
+        <h1><a href="index.jsp">Главная страница</a></h1>
+    </div>
+    <div>id =  ${idUser}</div>
+</div>
+
 <div class="main-container">
     <div class="registration-block">
         <h1>Регистрация нового пользователя</h1>

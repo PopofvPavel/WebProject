@@ -56,7 +56,7 @@ public class LoginCommand extends Command {
         }
         try {
             if (idUserType == 1) {
-                //forward("/admin-page.jsp");
+                forward("/admin-page.jsp");
 
             } else if (idUserType == 2) {
                 forward("/moder-page.jsp");

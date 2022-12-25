@@ -16,7 +16,7 @@
 <div id="header">
 
     <div>
-        <h1><a href="index.jsp">Главная страница main gg</a></h1>
+        <h1><a href="index.jsp">Главная страница</a></h1>
      </div>
     <div class="login-id">
         <%

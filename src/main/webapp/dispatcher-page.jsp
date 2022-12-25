@@ -16,29 +16,13 @@
 </head>
 <body>
 
-<%--<div id="header">
+<div id="header">
+
     <div>
-        <h1>Главная страница</h1>
-
-&lt;%&ndash;    </div>
-    <div class="login-id">
-        <c:set var="userId" value="${idUser}" />
-        <c:choose>
-            <c:when test="${userId == null}">
-                <form action="login.jsp">
-                    <input type="submit" class="button" value="Login"></td>
-                </form>
-            </c:when>
-            <c:otherwise>
-               Your id is ${userId}
-            </c:otherwise>
-        </c:choose>
-&lt;%&ndash;        <form action="login.jsp">
-            <input type="submit" class="button" value="Login"></td>
-        </form>&ndash;%&gt;&ndash;%&gt;
+        <h1><a href="index.jsp">Главная страница</a></h1>
     </div>
-
-</div>--%>
+    <div>id =  ${idUser}</div>
+</div>
 
 <div class="info-selection-and-update-container">
     <div class="select-info-block">

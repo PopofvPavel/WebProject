@@ -1,4 +1,8 @@
-<%@ page import="ru.rsreu.datalayer.handlers.SystemHandler" %><%--
+<%@ page import="ru.rsreu.datalayer.handlers.SystemHandler" %>
+<%@ page import="ru.rsreu.datalayer.DAO.DAOFactory" %>
+<%@ page import="ru.rsreu.datalayer.DAO.DBType" %>
+<%@ page import="ru.rsreu.datalayer.DAO.RequestsDAO" %>
+<%@ page import="ru.rsreu.datalayer.data.Request" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 05.12.2022
@@ -15,7 +19,19 @@
 </head>
 <body>
 <div class="block-bright">
-Vrode vstavil
+    <%
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        RequestsDAO requestsDAO = factory.getRequestsDAO();
+        Request lastCapRequest = requestsDAO.getLastRequestById(3);
+        boolean isRequestTypeCorrect = (boolean) request.getSession().getAttribute("isRequestTypeCorrect");
+        if(isRequestTypeCorrect){
+    %>
+<%--Vrode vstavil, id =--%>
+    <%= "Request is accepted, id = "+lastCapRequest.getIdRequest()%>
+
+    <%} else {%>
+    <%= "Request is denied, you can't send this type now "%>
+    <%}%>
 </div>
 </body>
 </html>

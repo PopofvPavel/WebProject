@@ -1,5 +1,8 @@
 package ru.rsreu.control.commands;
 
+import ru.rsreu.datalayer.DAO.DAOFactory;
+import ru.rsreu.datalayer.DAO.DBType;
+import ru.rsreu.datalayer.DAO.RequestsDAO;
 import ru.rsreu.datalayer.data.Request;
 import ru.rsreu.datalayer.data.RequestStatus;
 import ru.rsreu.datalayer.data.RequestType;
@@ -13,10 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SendRequestCommand extends Command {
+    private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+    private RequestsDAO requestsDAO;
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
-
+        requestsDAO = factory.getRequestsDAO();
     }
 
     @Override
@@ -27,8 +32,27 @@ public class SendRequestCommand extends Command {
         RequestStatus requestStatus = RequestStatus.IN_CONSIDERATON;
         //int idCaptain = 6;    //fix later
         int idCaptain = (int)request.getSession().getAttribute("idUser");
+
+        boolean isRequestTypeCorrect = false;
+        Request lastCapRequest = requestsDAO.getLastRequestById(idCaptain);
+        if ((lastCapRequest.getRequestType().equals(requestType) &&
+                (lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED)) ||
+                !(lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED) ||
+                        lastCapRequest.getRequestStatus().equals(RequestStatus.DENIED)))) {
+            request.getSession().setAttribute("isRequestTypeCorrect", false);
+
+        } else{
+
+            isRequestTypeCorrect = true;
+            request.getSession().setAttribute("isRequestTypeCorrect", true);
+        }
+
         Request requestCap = new Request(idRequest, requestType, requestStatus, idCaptain);
-        boolean isSendRequest = CaptainActionHandler.sendRequest(requestCap);
+        boolean isSendRequest = true;//it becomes false only if rows are not inserted
+        if(isRequestTypeCorrect){
+            isSendRequest = CaptainActionHandler.sendRequest(requestCap);
+        }
+
         try {
             if (isSendRequest) {
                 this.forward("/new-request.jsp");

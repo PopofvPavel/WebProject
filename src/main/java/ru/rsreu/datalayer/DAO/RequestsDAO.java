@@ -6,6 +6,8 @@ import ru.rsreu.datalayer.data.RequestStatus;
 import java.util.List;
 
 public interface RequestsDAO {
+    Request getLastRequestById(int idCaptain);
+
     List<Request> getAllRequests();
 
     void setRequestStatus(Request request, RequestStatus status);

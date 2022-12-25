@@ -17,6 +17,14 @@
     </style>
 </head>
 <body>
+<div id="header">
+
+    <div>
+        <h1><a href="index.jsp">Главная страница</a></h1>
+    </div>
+    <div>id =  ${idUser}</div>
+</div>
+
 <div class="table-container">
     <h1>Таблица пользователей</h1>
     <table class="data-table">
