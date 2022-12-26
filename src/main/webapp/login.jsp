@@ -29,7 +29,6 @@
                     <td><input type="text" class="text-box" name="userPassword"></td>
                 </tr>
                 <tr>
-                  <%--  <% boolean isAuthorized%>--%>
                     <td><input type="submit" name="command" class="button" value="Login"></td>
                     <td><input type="reset" class="button" value="Cancel"></td>
                 </tr>

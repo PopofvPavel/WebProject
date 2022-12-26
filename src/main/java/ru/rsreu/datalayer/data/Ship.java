@@ -2,12 +2,12 @@ package ru.rsreu.datalayer.data;
 
 public class Ship {
     private int idShip;
-    private int isCaptain;
+    private int idCaptain;
     private String name;
 
     public Ship(int idShip, int isCaptain, String name) {
         this.idShip = idShip;
-        this.isCaptain = isCaptain;
+        this.idCaptain = isCaptain;
         this.name = name;
     }
 
@@ -19,12 +19,12 @@ public class Ship {
         this.idShip = idShip;
     }
 
-    public int getIsCaptain() {
-        return isCaptain;
+    public int getIdCaptain() {
+        return idCaptain;
     }
 
-    public void setIsCaptain(int isCaptain) {
-        this.isCaptain = isCaptain;
+    public void setIdCaptain(int idCaptain) {
+        this.idCaptain = idCaptain;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Ship {
     public String toString() {
         return "Ship{" +
                 "idShip=" + idShip +
-                ", isCaptain=" + isCaptain +
+                ", isCaptain=" + idCaptain +
                 ", name='" + name + '\'' +
                 '}';
     }

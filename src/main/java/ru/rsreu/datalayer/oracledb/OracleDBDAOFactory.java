@@ -66,6 +66,11 @@ public class OracleDBDAOFactory extends DAOFactory {
 	}
 
 	@Override
+	public ShipsDAO getShipsDAO() {
+		return new OracleShipsDAO(connection);
+	}
+
+	@Override
 	public RequestsDAO getRequestsDAO() {
 		return new OracleRequestsDAO(connection);
 	}

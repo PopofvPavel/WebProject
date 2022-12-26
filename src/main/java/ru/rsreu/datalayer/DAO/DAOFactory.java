@@ -17,5 +17,7 @@ public abstract class DAOFactory {
 
 	public abstract RequestsDAO getRequestsDAO();
 
+	public abstract ShipsDAO getShipsDAO();
+
 
 }

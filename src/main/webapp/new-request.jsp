@@ -2,7 +2,8 @@
 <%@ page import="ru.rsreu.datalayer.DAO.DAOFactory" %>
 <%@ page import="ru.rsreu.datalayer.DAO.DBType" %>
 <%@ page import="ru.rsreu.datalayer.DAO.RequestsDAO" %>
-<%@ page import="ru.rsreu.datalayer.data.Request" %><%--
+<%@ page import="ru.rsreu.datalayer.data.Request" %>
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 05.12.2022
@@ -22,16 +23,29 @@
     <%
         DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
         RequestsDAO requestsDAO = factory.getRequestsDAO();
-        Request lastCapRequest = requestsDAO.getLastRequestById(3);
+        Request lastCapRequest = requestsDAO.getLastRequestById((Integer) request.getSession().getAttribute("idUser"));
         boolean isRequestTypeCorrect = (boolean) request.getSession().getAttribute("isRequestTypeCorrect");
         if(isRequestTypeCorrect){
     %>
 <%--Vrode vstavil, id =--%>
     <%= "Request is accepted, id = "+lastCapRequest.getIdRequest()%>
+   <%-- <%
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(" <form action=\"HelloServlet\"  method=\"post\">\n" +
+                "            <input type=\"submit\" class=\"button\" name=\"command\" value=\"Lead\">\n" +
+                "            <input type=\"submit\" class=\"button\" name=\"command\" value=\"Transmit\">\n"  +
+                "        </form>");
+
+    %>--%>
 
     <%} else {%>
     <%= "Request is denied, you can't send this type now "%>
     <%}%>
+
+    <form action="captain-page.jsp" method="get">
+        <input type="submit" class="button" value="Back">
+    </form>
 </div>
+
 </body>
 </html>

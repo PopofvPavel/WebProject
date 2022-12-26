@@ -69,7 +69,7 @@
         </tr>
     </table>
 
-    <form action="admin-page.jsp" method="get">
+    <form action="index.jsp" method="get">
         <input type="submit" class="button" value="Назад">
     </form>
 

@@ -1,4 +1,9 @@
-<%--
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="ru.rsreu.datalayer.DAO.DAOFactory" %>
+<%@ page import="ru.rsreu.datalayer.DAO.DBType" %>
+<%@ page import="ru.rsreu.datalayer.DAO.RequestsDAO" %>
+<%@ page import="ru.rsreu.datalayer.data.Request" %>
+<%@ page import="ru.rsreu.datalayer.data.RequestStatus" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 05.12.2022
@@ -51,9 +56,36 @@
     <div>
         <h1><a href="index.jsp">Главная страница</a></h1>
     </div>
-    <div>id =  ${idUser}</div>
+    <div>id = ${idUser}</div>
 </div>
+<div>
+    <%
+        DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+        RequestsDAO requestsDAO = factory.getRequestsDAO();
+        Request lastCapRequest = requestsDAO.getLastRequestById((Integer) request.getSession().getAttribute("idUser"));
 
+        if (!lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED) &&
+                !lastCapRequest.getRequestStatus().equals(RequestStatus.DENIED)) {%>
+    <%= "Your last request is in consideration" %>
+    <%
+    } else {
+        if (lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED)) {
+    %>
+    <%--Vrode vstavil, id =--%>
+    <%= "Your last request : " + lastCapRequest.getIdRequest() + " was accepted"%>
+    <%
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(" <form action=\"HelloServlet\" method=\"post\">\n" +
+                "            <input type=\"submit\" class=\"button\" name=\"command\" value=\"Lead\">\n" +
+                "            <input type=\"submit\" class=\"button\" name=\"command\" value=\"Transmit\">\n" +
+                "        </form>");
+    } else {
+
+
+    %>
+    <%= "Your last request : " + lastCapRequest.getIdRequest() + " was denied"%>
+    <%}}%>
+</div>
 <div class="block-dark">
     <h1>Новый запрос</h1>
     <form action="HelloServlet" method="post">
