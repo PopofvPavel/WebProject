@@ -42,17 +42,14 @@
             <input type="submit" class="button" name="command" value="${LoginButtonValue}"></td>
         </form>
 
-        <form action="HelloServlet" method="post">
-            <input type="submit" class="button" name="command" value="DeleteUser"> id пользователя</td>
-            <input type="text" class="text-box" name="id">
-        </form>
+
 
         <%-- <% }%>--%>
     </div>
     <div>id =  ${idUser}</div>
 
 </div>
-<div class="block-dark">
+<%--<div class="block-dark">
     <div class="actor-page-choice">
         <form action="admin-page.jsp">
             <input type="submit" class="button" value="Меню администратора"></td>
@@ -69,7 +66,10 @@
         <form action="piers-table.jsp">
             <input type="submit" class="button" value="piers"></td>
         </form>
-    </div>
+        <form action="pilot-page.jsp">
+            <input type="submit" class="button" value="pilot"></td>
+        </form>
+    </div>--%>
 </div>
 
 </body>

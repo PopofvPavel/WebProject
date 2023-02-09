@@ -8,9 +8,42 @@
     <url-pattern>/HelloServlet</url-pattern>
 </servlet-mapping>
 
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <!--<url-pattern>/*</url-pattern>-->
+        <servlet-name>helloServlet</servlet-name>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin-page.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ModerFilter</filter-name>
+        <filter-class>ModerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ModerFilter</filter-name>
+        <url-pattern>/moder-page.jsp</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>SessionListener</listener-class>
+    </listener>
+
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>
+    
+
 </web-app>
 <!--
         http://localhost:8080/demo_war_exploded/-->

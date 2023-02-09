@@ -1,0 +1,1 @@
+db.url = jdbc:oracle:thin:SYS//@localhost:1521/orcl

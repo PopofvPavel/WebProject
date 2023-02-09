@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class LeadCommand extends Command {
-    private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+    //private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
     private PiersDAO piersDAO;
     private RequestsDAO requestsDAO;
     private WorkersDAO workersDAO;
@@ -20,10 +20,14 @@ public class LeadCommand extends Command {
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
-        piersDAO = factory.getPiersDAO();
+/*        piersDAO = factory.getPiersDAO();
         requestsDAO = factory.getRequestsDAO();
         workersDAO = factory.getWorkersDAO();
-        shipsDAO = factory.getShipsDAO();
+        shipsDAO = factory.getShipsDAO();*/
+        piersDAO = (PiersDAO) request.getServletContext().getAttribute("piersDAO");
+        requestsDAO = (RequestsDAO) request.getServletContext().getAttribute("requestsDAO");
+        workersDAO = (WorkersDAO) request.getServletContext().getAttribute("workersDAO");
+        shipsDAO = (ShipsDAO) request.getServletContext().getAttribute("shipsDAO");
     }
 
     @Override

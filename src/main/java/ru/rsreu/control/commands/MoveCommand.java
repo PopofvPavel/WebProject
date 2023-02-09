@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class MoveCommand extends Command {
-    private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+    //private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
     private PiersDAO piersDAO;
     private RequestsDAO requestsDAO;
     private WorkersDAO workersDAO;
@@ -20,10 +20,14 @@ public class MoveCommand extends Command {
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
-        piersDAO = factory.getPiersDAO();
+/*        piersDAO = factory.getPiersDAO();
         requestsDAO = factory.getRequestsDAO();
         workersDAO = factory.getWorkersDAO();
-        shipsDAO = factory.getShipsDAO();
+        shipsDAO = factory.getShipsDAO();*/
+        piersDAO = (PiersDAO) request.getServletContext().getAttribute("piersDAO");
+        requestsDAO = (RequestsDAO) request.getServletContext().getAttribute("requestsDAO");
+        workersDAO = (WorkersDAO) request.getServletContext().getAttribute("workersDAO");
+        shipsDAO = (ShipsDAO) request.getServletContext().getAttribute("shipsDAO");
     }
 
     @Override
@@ -58,6 +62,11 @@ public class MoveCommand extends Command {
                 piersDAO.updatePier(pier);
                 request.getSession().setAttribute("isShipMoved", true);
                 request.getSession().setAttribute("idPier", pier.getIdPier());
+
+                String id = String.valueOf(lastCapRequest.getIdRequest());
+                String type = String.valueOf(RequestStatus.ACCEPTED);
+                requestsDAO.setRequestStatus(Integer.parseInt(id), RequestStatus.valueOf(type));
+
                 System.out.println("Pier " + pier.getIdPier() + "was occupid by ship" + ship.getIdShip());
                 try {
                     forward("/moving-ship-status.jsp");
@@ -90,6 +99,11 @@ public class MoveCommand extends Command {
                 pier.setStatus(PierStatus.EMPTY);
                 request.getSession().setAttribute("isShipMoved", true);
                 request.getSession().setAttribute("idPier", pier.getIdPier());
+
+                String id = String.valueOf(lastCapRequest.getIdRequest());
+                String type = String.valueOf(RequestStatus.ACCEPTED);
+                requestsDAO.setRequestStatus(Integer.parseInt(id), RequestStatus.valueOf(type));
+
                 try {
                     forward("/moving-ship-status.jsp");
                 } catch (ServletException e) {

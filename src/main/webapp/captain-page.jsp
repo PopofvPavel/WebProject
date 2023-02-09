@@ -64,12 +64,12 @@
         RequestsDAO requestsDAO = factory.getRequestsDAO();
         Request lastCapRequest = requestsDAO.getLastRequestById((Integer) request.getSession().getAttribute("idUser"));
 
-        if (!lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED) &&
-                !lastCapRequest.getRequestStatus().equals(RequestStatus.DENIED)) {%>
+        if ((lastCapRequest != null) && (!lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED) &&
+                !lastCapRequest.getRequestStatus().equals(RequestStatus.DENIED))) {%>
     <%= "Your last request is in consideration" %>
     <%
     } else {
-        if (lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED)) {
+        if ((lastCapRequest != null) && (lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED))) {
     %>
     <%--Vrode vstavil, id =--%>
     <%= "Your last request : " + lastCapRequest.getIdRequest() + " was accepted"%>
@@ -80,11 +80,15 @@
                 "            <input type=\"submit\" class=\"button\" name=\"command\" value=\"Transmit\">\n" +
                 "        </form>");
     } else {
-
+        if ((lastCapRequest != null)) {
 
     %>
     <%= "Your last request : " + lastCapRequest.getIdRequest() + " was denied"%>
-    <%}}%>
+    <%
+                }
+            }
+        }
+    %>
 </div>
 <div class="block-dark">
     <h1>Новый запрос</h1>

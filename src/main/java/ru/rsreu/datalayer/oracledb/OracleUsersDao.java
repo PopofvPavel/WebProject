@@ -30,6 +30,7 @@ public class OracleUsersDao implements UsersDAO {
 
             }
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

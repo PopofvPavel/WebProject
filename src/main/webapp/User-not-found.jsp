@@ -9,6 +9,9 @@
 <html>
 <head>
     <title>User not found</title>
+    <style>
+        <jsp:include page="css/style.css"/>
+    </style>
 </head>
 <body>
 This user is not found

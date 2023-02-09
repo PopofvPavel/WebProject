@@ -22,5 +22,8 @@
 <%="Your ship wasn't moved to pier (no empty piers or ship is already moved) " %>
 
 <%}%>
+<form action="pilot-page.jsp" method="get">
+    <input type="submit" class="button" value="Back">
+</form>
 </body>
 </html>

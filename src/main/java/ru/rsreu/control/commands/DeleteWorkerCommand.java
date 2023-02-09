@@ -1,7 +1,5 @@
 package ru.rsreu.control.commands;
 
-import ru.rsreu.datalayer.DAO.DAOFactory;
-import ru.rsreu.datalayer.DAO.DBType;
 import ru.rsreu.datalayer.DAO.WorkersDAO;
 import ru.rsreu.datalayer.data.Worker;
 
@@ -11,13 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class DeleteWorkerCommand extends Command {
-    private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+    //private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
     private WorkersDAO workersDAO;
 
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
-        workersDAO = factory.getWorkersDAO();
+        //workersDAO = factory.getWorkersDAO();
+        workersDAO =(WorkersDAO)(request.getServletContext().getAttribute("workersDAO"));
     }
 
     @Override

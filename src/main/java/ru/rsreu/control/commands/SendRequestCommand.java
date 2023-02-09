@@ -1,7 +1,5 @@
 package ru.rsreu.control.commands;
 
-import ru.rsreu.datalayer.DAO.DAOFactory;
-import ru.rsreu.datalayer.DAO.DBType;
 import ru.rsreu.datalayer.DAO.RequestsDAO;
 import ru.rsreu.datalayer.data.Request;
 import ru.rsreu.datalayer.data.RequestStatus;
@@ -16,12 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SendRequestCommand extends Command {
-    private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
+    //private static final DAOFactory factory = DAOFactory.getInstance(DBType.ORACLE);
     private RequestsDAO requestsDAO;
     @Override
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         super.init(context, request, response);
-        requestsDAO = factory.getRequestsDAO();
+        //requestsDAO = factory.getRequestsDAO();
+        requestsDAO = (RequestsDAO) request.getServletContext().getAttribute("requestsDAO");
+
     }
 
     @Override
@@ -33,18 +33,22 @@ public class SendRequestCommand extends Command {
         //int idCaptain = 6;    //fix later
         int idCaptain = (int)request.getSession().getAttribute("idUser");
 
-        boolean isRequestTypeCorrect = false;
-        Request lastCapRequest = requestsDAO.getLastRequestById(idCaptain);
-        if ((lastCapRequest.getRequestType().equals(requestType) &&
-                (lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED)) ||
-                !(lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED) ||
-                        lastCapRequest.getRequestStatus().equals(RequestStatus.DENIED)))) {
-            request.getSession().setAttribute("isRequestTypeCorrect", false);
+        boolean isRequestTypeCorrect = true;
+        request.getSession().setAttribute("isRequestTypeCorrect", true);
+        if (requestsDAO.getLastRequestById(idCaptain) != null) {
+            isRequestTypeCorrect = false;
+            Request lastCapRequest = requestsDAO.getLastRequestById(idCaptain);
+            if ((lastCapRequest.getRequestType().equals(requestType) &&
+                    (lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED)) ||
+                    !(lastCapRequest.getRequestStatus().equals(RequestStatus.ACCEPTED) ||
+                            lastCapRequest.getRequestStatus().equals(RequestStatus.DENIED)))) {
+                request.getSession().setAttribute("isRequestTypeCorrect", false);
 
-        } else{
+            } else{
 
-            isRequestTypeCorrect = true;
-            request.getSession().setAttribute("isRequestTypeCorrect", true);
+                isRequestTypeCorrect = true;
+                request.getSession().setAttribute("isRequestTypeCorrect", true);
+            }
         }
 
         Request requestCap = new Request(idRequest, requestType, requestStatus, idCaptain);

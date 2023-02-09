@@ -43,7 +43,7 @@
         </tr>
     </table>
 
-    <form action="admin-page.jsp" method="get">
+    <form action="dispatcher-page.jsp" method="get">
         <input type="submit" class="button" value="Назад">
     </form>
 

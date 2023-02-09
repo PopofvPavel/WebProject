@@ -1,5 +1,7 @@
 package ru.rsreu.datalayer.oracledb;
 
+import com.prutzkow.resourcer.ProjectResourcer;
+import com.prutzkow.resourcer.Resourcer;
 import ru.rsreu.datalayer.DAO.*;
 import ru.rsreu.datalayer.data.User;
 import ru.rsreu.datalayer.data.UserInfo;
@@ -22,7 +24,9 @@ public class OracleAdminActionDAO implements AdminActionDAO {
     @Override
     public List<UserInfo> getUsersInfoTable() {
         List<UserInfo> list = new ArrayList<UserInfo>();
-        String request = "SELECT ID_USER,LOGIN,PASSWORD, IS_AUTHORIZED, IS_BLOCKED FROM USER_GROUPS JOIN USERS ON USER_GROUPS.ID_USER_TYPE = USERS.ID_USER_TYPE";
+        Resourcer resourcer = ProjectResourcer.getInstance();
+        //String request = "SELECT ID_USER,LOGIN,PASSWORD, IS_AUTHORIZED, IS_BLOCKED FROM USER_GROUPS JOIN USERS ON USER_GROUPS.ID_USER_TYPE = USERS.ID_USER_TYPE";
+        String request = resourcer.getString("request.users.infotable");
 
         try {
             Statement st = this.connection.createStatement();

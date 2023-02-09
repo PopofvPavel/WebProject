@@ -22,5 +22,8 @@
 <%="You'r ship cant be transmitted to move now(no empty piers or action is not available) " %>
 
 <%}%>
+<form action="captain-page.jsp" method="get">
+    <input type="submit" class="button" value="Back">
+</form>
 </body>
 </html>
